@@ -9,11 +9,11 @@ const server = require("express");
 const PORT = process.env.PORT || 9999;
 const request = require("request");
 const bodyParser = require("body-parser");
-const functions = require("firebase-functions");
+// const functions = require("firebase-functions");
 
-exports.Webhook = functions.https.onRequest((res, res) => {
-  res.status(200).send("OK");
-});
+// exports.Webhook = functions.https.onRequest((res, res) => {
+//   res.status(200).send("OK");
+// });
 
 server()
   .use(bodyParser.json())
