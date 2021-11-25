@@ -13,9 +13,13 @@ const bodyParser = require("body-parser");
 server()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
-
+  .get("/", (req, res) =>
+    res.send(
+      `Hi there! This is a nodejs-line-api running on PORT  TEST: ${PORT}`
+    )
+  )
   // เพิ่มส่วนของ Webhook เข้าไป
-  .get("/webhook", (req, res) => {
+  .post("/webhook", (req, res) => {
     let replyToken = req.body.events[0].replyToken;
     let msg = req.body.events[0].message.text;
 
@@ -25,10 +29,7 @@ server()
     res.json({
       status: 200,
       message: `Webhook is working!`,
-    }),
-      res.send(
-        `Hi there! This is a nodejs-line-api running on PORT  TEST: ${PORT}`
-      );
+    });
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
