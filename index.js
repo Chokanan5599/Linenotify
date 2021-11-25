@@ -9,7 +9,6 @@ const server = require("express");
 const PORT = process.env.PORT || 9999;
 const request = require("request");
 const bodyParser = require("body-parser");
-
 server()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
@@ -30,20 +29,3 @@ server()
     });
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-// @app.route("/callback", methods=['POST'])
-// def callback():
-//     # get X-Line-Signature header value
-//     signature = request.headers['X-Line-Signature']
-
-//     # get request body as text
-//     body = request.get_data(as_text=True)
-//     app.logger.info("Request body: " + body)
-
-//     # handle webhook body
-//     try:
-//         handler.handle(body, signature)
-//     except InvalidSignatureError:
-//         abort(400)
-
-//     return 'OK'
