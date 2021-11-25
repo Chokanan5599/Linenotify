@@ -18,4 +18,21 @@ server()
       `Hi there! This is a nodejs-line-api running on PORT  TEST: ${PORT}`
     )
   )
+  .get("/webhook", function (req, res) {
+    status.getStatusFromFile().then(function (rs) {
+      if (typeof rs.result === "boolean" && rs.result === true) {
+        res.json({
+          result: true,
+          status: 200,
+          message: `Successful! Latest status is ${rs.data}`,
+        });
+      } else {
+        res.json({
+          result: false,
+          status: 500,
+          message: "Error! Internal Server Error",
+        });
+      }
+    });
+  })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
