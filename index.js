@@ -18,21 +18,36 @@ server()
       `Hi there! This is a nodejs-line-api running on PORT  TEST: ${PORT}`
     )
   )
-  .get("/webhook", function (req, res) {
-    status.getStatusFromFile().then(function (rs) {
-      if (typeof rs.result === "boolean" && rs.result === true) {
-        res.json({
-          result: true,
-          status: 200,
-          message: `Successful! Latest status is ${rs.data}`,
-        });
-      } else {
-        res.json({
-          result: false,
-          status: 500,
-          message: "Error! Internal Server Error",
-        });
-      }
+  // เพิ่มส่วนของ Webhook เข้าไป
+  .post("/webhook", function (req, res) {
+    let replyToken = req.body.events[0].replyToken;
+    let msg = req.body.events[0].message.text;
+
+    console.log(`Message token : ${replyToken}`);
+    console.log(`Message from chat : ${msg}`);
+
+    res.json({
+      status: 200,
+      message: `Webhook is working!`,
     });
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+// server()
+//   .use(bodyParser.json())
+//   .use(bodyParser.urlencoded({ extended: false}))
+//   .get('/', (req, res) => res.send(`Hi there! This is a nodejs-line-api running on PORT: ${ PORT }`))
+//   // เพิ่มส่วนของ Webhook เข้าไป
+//   .post('/webhook', function (req, res) {
+//       let replyToken = req.body.events[0].replyToken;
+//       let msg = req.body.events[0].message.text;
+
+//       console.log(`Message token : ${ replyToken }`);
+//       console.log(`Message from chat : ${ msg }`);
+
+//       res.json({
+//           status: 200,
+//           message: `Webhook is working!`
+//       });
+//   })
+//   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
