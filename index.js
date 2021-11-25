@@ -18,13 +18,7 @@ express()
   )
   // เพิ่มส่วนของ Webhook เข้าไป
   .post("/webhook", function (req, res) {
-    let replyToken = req.body.events[0].replyToken;
-    let msg = req.body.events[0].message.text;
-
-    console.log(`Message token : ${replyToken}`);
-    console.log(`Message from chat : ${msg}`);
-
-    res.json({
+    res.send({
       status: 200,
       message: `Webhook is working!`,
     });
