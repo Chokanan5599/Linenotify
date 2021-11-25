@@ -19,7 +19,7 @@ server()
     )
   )
   // เพิ่มส่วนของ Webhook เข้าไป
-  .post("/webhook", function (req, res) {
+  .post("/webhook", (req, res) => {
     let replyToken = req.body.events[0].replyToken;
     let msg = req.body.events[0].message.text;
 
