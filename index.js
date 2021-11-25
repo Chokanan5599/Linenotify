@@ -16,7 +16,7 @@ server()
     res.send(`Hi there! This is a nodejs-line-api running on PORT: ${PORT}`)
   )
   // เพิ่มส่วนของ Webhook เข้าไป
-  .post("/webhook", function (req, res) {
+  .get("/webhook", function (req, res) {
     let replyToken = req.body.events[0].replyToken;
     let msg = req.body.events[0].message.text;
 
