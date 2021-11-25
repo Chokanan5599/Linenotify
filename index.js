@@ -83,37 +83,12 @@ server()
   .use(bodyParser.urlencoded({ extended: false }))
   .get("/", (req, res) =>
     res.send(`Hi there! This is a nodejs-line-api running on PORT: ${PORT}`)
-  );
-
-app
+  )
+  // เพิ่มส่วนของ Webhook เข้าไป
   .post("/webhook", function (req, res) {
-    try {
-      const validator = new hmacValidator();
-      const notificationRequestItems = req.body.notificationRequestItems;
-      console.log("notification Request");
-      console.log(notificationRequestItems);
-
-      notificationRequestItems.forEach((item) => {
-        if (
-          validator.hmacValidator(
-            Item.notificationRequestItems,
-            process.env.HMAC_KEY
-          )
-        ) {
-          const eventCode = item.notificationRequestItems.eventCode;
-          if (eventCode === "AUTHORISED") {
-            if (item.notificationRequestItems.success === "true") {
-            } else {
-            }
-          } else {
-            console.log("Non-Valid NotificationRequestItems");
-          }
-        }
-      });
-      req.send("[accepted!]");
-    } catch (error) {
-      console.error(error);
-    }
+    res.json({
+      status: 200,
+      message: "Webhook is working!",
+    });
   })
-
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
