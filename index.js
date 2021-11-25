@@ -25,7 +25,10 @@ server()
     res.json({
       status: 200,
       message: `Webhook is working!`,
-    });
+    }),
+      res.send(
+        `Hi there! This is a nodejs-line-api running on PORT  TEST: ${PORT}`
+      );
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
