@@ -19,9 +19,22 @@ class LineMessaging {
             text: message,
           },
         ];
-        return lineApiService.reply(replyToken, _messages).then(function (rs) {
-          return resolve(rs);
-        });
+        if (message == "hogwarts") {
+          return firebaseService.getHogwartHouses().then(function (rsHouses) {
+            _messages[0].text = rsHouses;
+            return lineApiService
+              .reply(replyToken, _messages)
+              .then(function (rs) {
+                return resolve(rs);
+              });
+          });
+        } else {
+          return lineApiService
+            .reply(replyToken, _messages)
+            .then(function (rs) {
+              return resolve(rs);
+            });
+        }
       } catch (e) {
         return reject(e);
       }
