@@ -6,7 +6,7 @@
  * @desc A service for Get/Post data from Firebase Realtime Database.
  */
 const firebase = require("firebase-admin");
-const serviceAccount = require("../../linenotify-35853-firebase-adminsdk-kmouk-d0637543cc.json");
+const serviceAccount = require("../../linenotify-35853-firebase-adminsdk-kmouk-766d78aae3.json");
 var db, ref;
 
 class FirebaseService {
