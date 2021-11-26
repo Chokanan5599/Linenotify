@@ -13,7 +13,8 @@ class FirebaseService {
   constructor() {
     firebase.initializeApp({
       credential: firebase.credential.cert(serviceAccount),
-      databaseURL: "https://test-line-api.firebaseio.com",
+      databaseURL:
+        "https://linenotify-35853-default-rtdb.asia-southeast1.firebasedatabase.app/",
     });
 
     db = firebase.database();
