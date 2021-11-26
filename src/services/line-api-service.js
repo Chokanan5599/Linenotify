@@ -8,7 +8,7 @@
 const request = require("request");
 const apiToken =
   "pxidB+TjT0PR0HWrebhslg5RMQ5M5T51PFUg8NAO2vAMVANuUvyrvb062uz1XOhUrSK4HLf8it7Roho8Fd8srDH7ea7pb3OPFlROPRNs3cQ6E+1IaWzw+AZHNFxHXzsp3mvsTaF9A5pZFfMcvffbcQdB04t89/1O/w1cDnyilFU=";
-const apiRoute = "https://nodenotify-2.herokuapp.com/webhook";
+const apiRoute = "https://api.line.me/v2/bot/message/reply";
 const headers = {
   "Content-Type": "application/json",
   Authorization: "Bearer " + apiToken,
